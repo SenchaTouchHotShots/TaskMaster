@@ -13,6 +13,9 @@
         "stores": [
             "TaskStore"
         ],
+        "views": [
+            "mainView"
+        ],
         "name": "MyApp"
     },
     "customConfigs": [],
