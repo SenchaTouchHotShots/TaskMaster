@@ -102,8 +102,9 @@ Ext.define('MyApp.view.mainView', {
     },
 
     onCurrentListSelect: function(dataview, record, options) {
-        var currentTab = this.up('container');
+        var currentTab = this.getActiveItem();
         console.log(currentTab);
+        console.log(this);
 
         var currentDetails = currentTab.down('panel');
         console.log(currentDetails);
