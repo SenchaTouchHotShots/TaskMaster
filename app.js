@@ -22,7 +22,8 @@ Ext.application({
         'Task'
     ],
     stores: [
-        'TaskStore'
+        'TaskStore',
+        'CompletedStore'
     ],
     views: [
         'mainView'
@@ -30,6 +31,17 @@ Ext.application({
     name: 'MyApp',
 
     launch: function() {
+        var TaskStore = Ext.data.StoreManager.lookup('TaskStore');
+        var CompletedStore = Ext.data.StoreManager.lookup('CompletedStore');
+        if(CompletedStore.getCount()+TaskStore.getCount() === 0) {
+            console.log('we have no records');
+            storeCompleted.add({name: 'Here Is A Task', description: 'You can mark the task complete by clicking the Completed button below.', priority: 1, created: Date.now(), completed: '', isComplete: false});
+            storeCompleted.add({name: 'How To Edit A Task', description: 'You can edit the task by clicking the Edit button below.', priority: 2, created: Date.now(), completed: '', isCompleted: false});
+            storeCompleted.add({name: 'How To Add A Task', description: 'Add a task by clicking the Add button in the upper right corner.', priority: 3, created: Date.now(), completed: '', isComplete: false});
+            storeCompleted.sync();
+        } else {
+            console.log('we have records');
+        }
 
         Ext.create('MyApp.view.mainView', {fullscreen: true});
     }

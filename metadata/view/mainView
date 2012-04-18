@@ -89,11 +89,32 @@
                     "codeClass": null,
                     "userConfig": {
                         "id": "CurrentList",
+                        "itemId": "mylist",
                         "itemTpl": "<div class=priority_{priority}>{name}</div>",
+                        "store": "TaskStore",
                         "designer|userClassName": "MyList"
                     },
                     "customConfigs": [],
-                    "expanded": true
+                    "expanded": true,
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen12043",
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onCurrentListSelect",
+                                "implHandler": "var currentTab = this.up('container');\nconsole.log(currentTab);\n\nvar currentDetails = currentTab.down('panel');\nconsole.log(currentDetails);\n\ncurrentDetails.setRecord(record);\ncurrentTab.setActiveItem(currentDetails);",
+                                "name": "select",
+                                "designer|userClassName": "onCurrentListSelect"
+                            },
+                            "customConfigs": [],
+                            "expanded": true
+                        }
+                    ]
                 },
                 {
                     "id": "ExtBox1-ext-gen5095",
@@ -141,6 +162,7 @@
                     "userConfig": {
                         "id": "CompletedList",
                         "itemTpl": "<div class=priority_{priority}>{name}</div>",
+                        "store": "CompletedStore",
                         "designer|userClassName": "MyList1"
                     },
                     "customConfigs": [],
@@ -156,6 +178,7 @@
                     "codeClass": null,
                     "userConfig": {
                         "id": "CompletedDetails",
+                        "tpl": "<div class=\"taskName\">{name}</div>\n<div class=\"taskDescription\">{description}</div>\n<div class=\"taskCreated\">Created: {created}</div>\n<div class=\"taskCompleted\">Completed: {completed}</div>",
                         "designer|userClassName": "MyPanel1"
                     },
                     "customConfigs": [],

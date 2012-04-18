@@ -43,6 +43,14 @@
                 "app/view/mainView.js"
             ],
             "className": "mainView"
+        },
+        "47f9cdb7-d5a4-45bd-b7ab-95e1ace2ca1c": {
+            "paths": [
+                "metadata/store/CompletedStore",
+                "app/store/override/CompletedStore.js",
+                "app/store/CompletedStore.js"
+            ],
+            "className": "CompletedStore"
         }
     },
     "expandedState": {

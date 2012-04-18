@@ -43,9 +43,11 @@ Ext.define('MyApp.view.mainView', {
                     {
                         xtype: 'list',
                         id: 'CurrentList',
+                        itemId: 'mylist',
                         itemTpl: [
                             '<div class=priority_{priority}>{name}</div>'
-                        ]
+                        ],
+                        store: 'TaskStore'
                     },
                     {
                         xtype: 'panel',
@@ -71,18 +73,43 @@ Ext.define('MyApp.view.mainView', {
                         id: 'CompletedList',
                         itemTpl: [
                             '<div class=priority_{priority}>{name}</div>'
-                        ]
+                        ],
+                        store: 'CompletedStore'
                     },
                     {
                         xtype: 'panel',
-                        id: 'CompletedDetails'
+                        id: 'CompletedDetails',
+                        tpl: [
+                            '<div class="taskName">{name}</div>',
+                            '<div class="taskDescription">{description}</div>',
+                            '<div class="taskCreated">Created: {created}</div>',
+                            '<div class="taskCompleted">Completed: {completed}</div>'
+                        ]
                     }
                 ]
             }
         ],
         tabBar: {
             docked: 'bottom'
-        }
+        },
+        listeners: [
+            {
+                fn: 'onCurrentListSelect',
+                event: 'select',
+                delegate: '#CurrentList'
+            }
+        ]
+    },
+
+    onCurrentListSelect: function(dataview, record, options) {
+        var currentTab = this.up('container');
+        console.log(currentTab);
+
+        var currentDetails = currentTab.down('panel');
+        console.log(currentDetails);
+
+        currentDetails.setRecord(record);
+        currentTab.setActiveItem(currentDetails);
     }
 
 });

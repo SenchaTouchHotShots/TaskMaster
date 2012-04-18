@@ -30,16 +30,23 @@ Ext.define('MyApp.model.Task', {
                 type: 'string'
             },
             {
+                dateFormat: 'm/d/Y',
                 name: 'created',
                 type: 'date'
             },
             {
+                dateFormat: 'm/d/Y',
                 name: 'completed',
                 type: 'date'
             },
             {
                 name: 'priority',
                 type: 'int'
+            },
+            {
+                defaultValue: false,
+                name: 'isComplete',
+                type: 'boolean'
             }
         ]
     }

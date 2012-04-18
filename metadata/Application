@@ -11,7 +11,8 @@
             "Task"
         ],
         "stores": [
-            "TaskStore"
+            "TaskStore",
+            "CompletedStore"
         ],
         "views": [
             "mainView"
@@ -22,5 +23,24 @@
     "designerId": "application",
     "$viewOrder": 0,
     "iconCls": "icon-application",
-    "expanded": true
+    "expanded": true,
+    "cn": [
+        {
+            "id": "ExtBox1-ext-gen17855",
+            "type": "fixedfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "launch",
+                "implHandler": "var TaskStore = Ext.data.StoreManager.lookup('TaskStore');\nvar CompletedStore = Ext.data.StoreManager.lookup('CompletedStore');\nif(CompletedStore.getCount()+TaskStore.getCount() === 0) {\n    console.log('we have no records');\n    storeCompleted.add({name: 'Here Is A Task', description: 'You can mark the task complete by clicking the Completed button below.', priority: 1, created: Date.now(), completed: '', isComplete: false});\n    storeCompleted.add({name: 'How To Edit A Task', description: 'You can edit the task by clicking the Edit button below.', priority: 2, created: Date.now(), completed: '', isCompleted: false});\n    storeCompleted.add({name: 'How To Add A Task', description: 'Add a task by clicking the Add button in the upper right corner.', priority: 3, created: Date.now(), completed: '', isComplete: false});\n    storeCompleted.sync();\n} else {\n    console.log('we have records');\n}\n",
+                "designer|userClassName": "launch"
+            },
+            "customConfigs": [],
+            "iconCls": "icon-basic-function",
+            "expanded": true
+        }
+    ]
 }

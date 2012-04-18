@@ -1,5 +1,5 @@
 {
-    "id": "ExtBox1-ext-gen3342",
+    "id": "ExtBox1-ext-gen12864",
     "type": "store",
     "reference": {
         "name": "items",
@@ -9,16 +9,16 @@
     "userConfig": {
         "autoLoad": true,
         "model": "Task",
-        "storeId": "TaskStore",
-        "designer|userClassName": "TaskStore"
+        "storeId": "CompletedStore",
+        "designer|userClassName": "CompletedStore"
     },
     "customConfigs": [],
-    "designerId": "0e28fd7e-7430-477a-8b40-17c7c89bfeec",
-    "$viewOrder": 0,
+    "designerId": "47f9cdb7-d5a4-45bd-b7ab-95e1ace2ca1c",
+    "$viewOrder": 1,
     "expanded": true,
     "cn": [
         {
-            "id": "ExtBox1-ext-gen3513",
+            "id": "ExtBox1-ext-gen12868",
             "type": "localstorageproxy",
             "reference": {
                 "name": "proxy",
@@ -33,7 +33,7 @@
             "expanded": true
         },
         {
-            "id": "ExtBox1-ext-gen14234",
+            "id": "ExtBox1-ext-gen13227",
             "type": "filter",
             "reference": {
                 "name": "filters",
@@ -41,13 +41,13 @@
             },
             "codeClass": null,
             "userConfig": {
-                "designer|userClassName": "MyFilter1"
+                "designer|userClassName": "MyFilter"
             },
             "customConfigs": [],
             "expanded": true,
             "cn": [
                 {
-                    "id": "ExtBox1-ext-gen14355",
+                    "id": "ExtBox1-ext-gen13551",
                     "type": "fixedfunction",
                     "reference": {
                         "name": "items",
@@ -59,7 +59,7 @@
                         "designer|params": [
                             "item"
                         ],
-                        "implHandler": "return !item.data.isComplete;",
+                        "implHandler": "return item.data.isComplete;",
                         "designer|userClassName": "filterFn"
                     },
                     "customConfigs": [],

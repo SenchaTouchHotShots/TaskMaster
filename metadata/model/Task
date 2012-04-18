@@ -71,6 +71,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "dateFormat": "m/d/Y",
                 "name": "created",
                 "type": "date",
                 "designer|userClassName": "MyField3"
@@ -87,6 +88,7 @@
             },
             "codeClass": null,
             "userConfig": {
+                "dateFormat": "m/d/Y",
                 "name": "completed",
                 "type": "date",
                 "designer|userClassName": "MyField4"
@@ -106,6 +108,23 @@
                 "name": "priority",
                 "type": "int",
                 "designer|userClassName": "MyField5"
+            },
+            "customConfigs": [],
+            "expanded": true
+        },
+        {
+            "id": "ExtBox1-ext-gen22004",
+            "type": "datafield",
+            "reference": {
+                "name": "fields",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "defaultValue": "false",
+                "name": "isComplete",
+                "type": "boolean",
+                "designer|userClassName": "MyField18"
             },
             "customConfigs": [],
             "expanded": true
