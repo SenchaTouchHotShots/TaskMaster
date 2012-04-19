@@ -32,6 +32,44 @@
             "expanded": true,
             "cn": [
                 {
+                    "id": "ExtBox1-ext-gen3861",
+                    "type": "button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "hidden": true,
+                        "id": "backButton",
+                        "itemId": "mybutton1",
+                        "ui": "back",
+                        "text": "Back",
+                        "designer|userClassName": "MyButton1"
+                    },
+                    "customConfigs": [],
+                    "expanded": true,
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen5633",
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onBackButtonTap",
+                                "implHandler": "var currentTab = this.getActiveItem();\ncurrentTab.setActiveItem(0);\nbutton.hide();",
+                                "name": "tap",
+                                "designer|userClassName": "onBackButtonTap"
+                            },
+                            "customConfigs": [],
+                            "expanded": true
+                        }
+                    ]
+                },
+                {
                     "id": "ExtBox1-ext-gen6398",
                     "type": "spacer",
                     "reference": {
@@ -54,11 +92,31 @@
                     },
                     "codeClass": null,
                     "userConfig": {
+                        "itemId": "addButton",
                         "text": "Add",
                         "designer|userClassName": "MyButton"
                     },
                     "customConfigs": [],
-                    "expanded": true
+                    "expanded": true,
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen10908",
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onMybuttonTap",
+                                "implHandler": "var tabs = this.getInnerItems();\nvar currentTab = tabs[0];\ncurrentTab.setActiveItem(2);\nthis.setActiveItem(currentTab);\nvar backButton = Ext.getCmp('backButton');\nbackButton.hide();",
+                                "name": "tap",
+                                "designer|userClassName": "onMybuttonTap"
+                            },
+                            "customConfigs": [],
+                            "expanded": true
+                        }
+                    ]
                 }
             ]
         },
@@ -72,6 +130,7 @@
             "codeClass": null,
             "userConfig": {
                 "layout": "card",
+                "scrollable": true,
                 "designer|userClassName": "MyContainer",
                 "title": "Curent",
                 "iconCls": "organize"
@@ -90,15 +149,18 @@
                     "userConfig": {
                         "id": "CurrentList",
                         "itemId": "mylist",
+                        "deselectOnContainerClick": false,
                         "itemTpl": "<div class=priority_{priority}>{name}</div>",
                         "store": "TaskStore",
+                        "onItemDisclosure": false,
+                        "preventSelectionOnDisclose": false,
                         "designer|userClassName": "MyList"
                     },
                     "customConfigs": [],
-                    "expanded": true,
+                    "expanded": false,
                     "cn": [
                         {
-                            "id": "ExtBox1-ext-gen12043",
+                            "id": "ExtBox1-ext-gen3371",
                             "type": "basiceventbinding",
                             "reference": {
                                 "name": "listeners",
@@ -107,7 +169,7 @@
                             "codeClass": null,
                             "userConfig": {
                                 "fn": "onCurrentListSelect",
-                                "implHandler": "var currentTab = this.up('container');\nconsole.log(currentTab);\n\nvar currentDetails = currentTab.down('panel');\nconsole.log(currentDetails);\n\ncurrentDetails.setRecord(record);\ncurrentTab.setActiveItem(currentDetails);",
+                                "implHandler": "var currentTab = this.getActiveItem();\nvar backButton = Ext.getCmp('backButton');\nbackButton.show();\nvar currentDetails = currentTab.down('panel');\n\ncurrentDetails.setRecord(record);\ncurrentTab.setActiveItem(currentDetails);",
                                 "name": "select",
                                 "designer|userClassName": "onCurrentListSelect"
                             },
@@ -130,7 +192,276 @@
                         "designer|userClassName": "MyPanel"
                     },
                     "customConfigs": [],
-                    "expanded": true
+                    "expanded": false,
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen28536",
+                            "type": "toolbar",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "docked": "bottom",
+                                "designer|userClassName": "MyToolbar1"
+                            },
+                            "customConfigs": [],
+                            "expanded": true,
+                            "cn": [
+                                {
+                                    "id": "ExtBox1-ext-gen28835",
+                                    "type": "button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "id": "EditButton",
+                                        "itemId": "mybutton4",
+                                        "text": "Edit",
+                                        "designer|userClassName": "MyButton4"
+                                    },
+                                    "customConfigs": [],
+                                    "expanded": true,
+                                    "cn": [
+                                        {
+                                            "id": "ExtBox1-ext-gen29897",
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onEditButtonTap",
+                                                "implHandler": "var currentTab = this.getActiveItem();\nvar DetailsPanel = currentTab.getActiveItem();\n\ncurrentTab.setActiveItem(2);\nvar formPanel = currentTab.getActiveItem();\nformPanel.setRecord(DetailsPanel.getRecord());\n\nthis.setActiveItem(currentTab);\n\nvar backButton = Ext.getCmp('backButton');\nbackButton.hide();",
+                                                "name": "tap",
+                                                "designer|userClassName": "onEditButtonTap"
+                                            },
+                                            "customConfigs": [],
+                                            "expanded": true
+                                        }
+                                    ]
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen29506",
+                                    "type": "spacer",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "designer|userClassName": "MySpacer1"
+                                    },
+                                    "customConfigs": [],
+                                    "expanded": true
+                                },
+                                {
+                                    "id": "ExtBox1-ext-gen29202",
+                                    "type": "button",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "id": "CompleteButton",
+                                        "itemId": "mybutton5",
+                                        "text": "Mark Complete",
+                                        "designer|userClassName": "MyButton5"
+                                    },
+                                    "customConfigs": [],
+                                    "expanded": true,
+                                    "cn": [
+                                        {
+                                            "id": "ExtBox1-ext-gen36173",
+                                            "type": "basiceventbinding",
+                                            "reference": {
+                                                "name": "listeners",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fn": "onCompleteButtonTap",
+                                                "implHandler": "var currentTab = this.getActiveItem();\nvar detailsPanel = currentTab.getActiveItem();\n\nvar record = detailsPanel.getRecord();\n\nrecord.set('completed', new Date());\nrecord.set('isComplete', true);\n\nvar store = Ext.data.StoreManager.lookup('TaskStore');\nstore.sync();\n\nthis.setActiveItem(1);\nvar completedList = this.getActiveItem();\nvar completedStore = completedList.getActiveItem().getStore();\ncompletedStore.add(record);\ncompletedList.getActiveItem().refresh();\n\ncurrentTab.setActiveItem(0);\n\nvar backButton = Ext.getCmp('backButton');\nbackButton.hide();",
+                                                "name": "tap",
+                                                "designer|userClassName": "onCompleteButtonTap"
+                                            },
+                                            "customConfigs": [],
+                                            "expanded": true
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "id": "ExtBox1-ext-gen9315",
+                    "type": "formpanel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "margin": "",
+                        "designer|userClassName": "MyFormPanel"
+                    },
+                    "customConfigs": [],
+                    "expanded": true,
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen9476",
+                            "type": "textfield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "id": "name",
+                                "margin": 3,
+                                "label": "Name",
+                                "name": "name",
+                                "designer|userClassName": "MyTextField"
+                            },
+                            "customConfigs": [],
+                            "expanded": true
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen9670",
+                            "type": "textareafield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "id": "description",
+                                "margin": 3,
+                                "label": "Description",
+                                "name": "description",
+                                "designer|userClassName": "MyTextArea"
+                            },
+                            "customConfigs": [],
+                            "expanded": true
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen9866",
+                            "type": "selectfield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "id": "priority",
+                                "margin": 3,
+                                "label": "Priority",
+                                "name": "priority",
+                                "value": "2",
+                                "hiddenName": "priority",
+                                "options": "[{text: 'High',  value: 1},\n{text: 'Medium', value: 2},\n{text: 'Low',  value: 3}]",
+                                "designer|userClassName": "MySelectField"
+                            },
+                            "customConfigs": [],
+                            "expanded": true
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen10635",
+                            "type": "hiddenfield",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "id": "id",
+                                "name": "id",
+                                "designer|userClassName": "MyHiddenField"
+                            },
+                            "customConfigs": [],
+                            "expanded": true
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen14516",
+                            "type": "button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "SaveButton",
+                                "margin": 10,
+                                "ui": null,
+                                "text": "Save",
+                                "designer|userClassName": "MyButton2"
+                            },
+                            "customConfigs": [],
+                            "expanded": true,
+                            "cn": [
+                                {
+                                    "id": "ExtBox1-ext-gen18879",
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onSaveButtonTap",
+                                        "implHandler": "var currentTab = this.getActiveItem();\nvar formPanel = currentTab.getActiveItem();\n\nvar values = formPanel.getValues();\n\nvar store = Ext.data.StoreManager.lookup('TaskStore');\nconsole.log(values.id);\nif(values.id === null) {\n    console.log('got NO ID');\n    var record = Ext.ModelMgr.create(values, 'MyApp.model.Task');\n    record.set('created', new Date());\n    store.add(record);\n} else {\n    console.log('got an ID');\n    var record = store.getById(values.id);\n    record.set('name', values.name);\n    record.set('description', values.description);\n    record.set('priority', values.priority);\n}\n\nstore.sync();\nformPanel.reset();\ncurrentTab.setActiveItem(0);",
+                                        "name": "tap",
+                                        "designer|userClassName": "onSaveButtonTap"
+                                    },
+                                    "customConfigs": [],
+                                    "expanded": true
+                                }
+                            ]
+                        },
+                        {
+                            "id": "ExtBox1-ext-gen14710",
+                            "type": "button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "itemId": "CancelButton",
+                                "margin": 10,
+                                "ui": null,
+                                "text": "Cancel",
+                                "designer|userClassName": "MyButton3"
+                            },
+                            "customConfigs": [],
+                            "expanded": true,
+                            "cn": [
+                                {
+                                    "id": "ExtBox1-ext-gen16417",
+                                    "type": "basiceventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onMybutton3Tap",
+                                        "implHandler": "var currentTab = this.getActiveItem();\ncurrentTab.setActiveItem(0);",
+                                        "name": "tap",
+                                        "designer|userClassName": "onMybutton3Tap"
+                                    },
+                                    "customConfigs": [],
+                                    "expanded": true
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         },
@@ -144,6 +475,7 @@
             "codeClass": null,
             "userConfig": {
                 "layout": "card",
+                "scrollable": true,
                 "designer|userClassName": "MyContainer1",
                 "title": "Completed",
                 "iconCls": "delete"
@@ -161,12 +493,32 @@
                     "codeClass": null,
                     "userConfig": {
                         "id": "CompletedList",
+                        "itemId": "mylist1",
                         "itemTpl": "<div class=priority_{priority}>{name}</div>",
                         "store": "CompletedStore",
                         "designer|userClassName": "MyList1"
                     },
                     "customConfigs": [],
-                    "expanded": true
+                    "expanded": true,
+                    "cn": [
+                        {
+                            "id": "ExtBox1-ext-gen60343",
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onCompletedListSelect",
+                                "implHandler": "var completedTab = this.getActiveItem();\nvar backButton = Ext.getCmp('backButton');\nbackButton.show();\nvar completedDetails = completedTab.down('panel');\n\ncompletedDetails.setRecord(record);\ncompletedTab.setActiveItem(completedDetails);",
+                                "name": "select",
+                                "designer|userClassName": "onCompletedListSelect"
+                            },
+                            "customConfigs": [],
+                            "expanded": true
+                        }
+                    ]
                 },
                 {
                     "id": "ExtBox1-ext-gen5419",
