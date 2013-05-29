@@ -305,7 +305,7 @@ Ext.define('MyApp.view.mainView', {
 
         var store = Ext.data.StoreManager.lookup('TaskStore');
         console.log(values.id);
-        if(values.id === null) {
+        if(values.id === null || values.id === '') {
             console.log('got NO ID');
             var record = Ext.ModelMgr.create(values, 'MyApp.model.Task');
             record.set('created', new Date());
@@ -321,6 +321,7 @@ Ext.define('MyApp.view.mainView', {
         store.sync();
         formPanel.reset();
         currentTab.setActiveItem(0);
+        currentTab.down('list').deselectAll();
     },
 
     onMybutton3Tap: function(button, e, options) {

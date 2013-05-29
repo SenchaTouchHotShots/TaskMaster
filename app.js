@@ -38,7 +38,7 @@ Ext.application({
         if(CompletedStore.getCount()+TaskStore.getCount() === 0) {
             console.log('we have no records');
             TaskStore.add({name: 'Here Is A Task', description: 'You can mark the task complete by clicking the Completed button below.', priority: 1, created: today, completed: '', isComplete: false});
-            TaskStore.add({name: 'How To Edit A Task', description: 'You can edit the task by clicking the Edit button below.', priority: 2, created: today, completed: '', isCompleted: false});
+            TaskStore.add({name: 'How To Edit A Task', description: 'You can edit the task by clicking the Edit button below.', priority: 2, created: today, completed: '', isComplete: false});
             TaskStore.add({name: 'How To Add A Task', description: 'Add a task by clicking the Add button in the upper right corner.', priority: 3, created: today, completed: '', isComplete: false});
             TaskStore.sync();
         } else {
